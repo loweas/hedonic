@@ -226,8 +226,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </details>
 <div class="cell-output-display">
 
-<div class="datatables html-widget html-fill-item" id="htmlwidget-b4f08f3b3ed59ed2e9cf" style="width:100%;height:auto;"></div>
-<script type="application/json" data-for="htmlwidget-b4f08f3b3ed59ed2e9cf">{"x":{"filter":"none","vertical":false,"caption":"<caption>Popularity Mean, Median and Visitor Usage Average for Hawaii by Island<\/caption>","data":[["1","2","3","4","5","6"],["Hawaii","Kauai","Lanai","Maui","Molokai","Oahu"],[6.57,11.19,3.71,9.529999999999999,2.3,10.27],[5.13,7.54,3.58,8.25,1.41,7.34],[8.609999999999999,17.37,4.22,12.3,2.63,12.27],[12.51,23.53,4.98,16.68,3.87,21.22],[1.88,2.07,1.5,1.77,1.43,2]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>state_name<\/th>\n      <th>Mean<\/th>\n      <th>Q50<\/th>\n      <th>Q75<\/th>\n      <th>Q90<\/th>\n      <th>AverageUsage<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"pageLength":10,"autoWidth":true,"columnDefs":[{"className":"dt-right","targets":[2,3,4,5,6]},{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"state_name","targets":1},{"name":"Mean","targets":2},{"name":"Q50","targets":3},{"name":"Q75","targets":4},{"name":"Q90","targets":5},{"name":"AverageUsage","targets":6}],"order":[],"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+<div class="datatables html-widget html-fill-item" id="htmlwidget-abc5bd9ea5c112794af8" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-abc5bd9ea5c112794af8">{"x":{"filter":"none","vertical":false,"caption":"<caption>Popularity Mean, Median and Visitor Usage Average for Hawaii by Island<\/caption>","data":[["1","2","3","4","5","6"],["Hawaii","Kauai","Lanai","Maui","Molokai","Oahu"],[6.57,11.19,3.71,9.529999999999999,2.3,10.27],[5.13,7.54,3.58,8.25,1.41,7.34],[8.609999999999999,17.37,4.22,12.3,2.63,12.27],[12.51,23.53,4.98,16.68,3.87,21.22],[1.88,2.07,1.5,1.77,1.43,2]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>state_name<\/th>\n      <th>Mean<\/th>\n      <th>Q50<\/th>\n      <th>Q75<\/th>\n      <th>Q90<\/th>\n      <th>AverageUsage<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"pageLength":10,"autoWidth":true,"columnDefs":[{"className":"dt-right","targets":[2,3,4,5,6]},{"orderable":false,"targets":0},{"name":" ","targets":0},{"name":"state_name","targets":1},{"name":"Mean","targets":2},{"name":"Q50","targets":3},{"name":"Q75","targets":4},{"name":"Q90","targets":5},{"name":"AverageUsage","targets":6}],"order":[],"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 <p>We will use those scores to create a sets of trails and measure the distance between the trailhead and housing across the dataset. We use the popularity score and create a variables for</p>
@@ -387,7 +387,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>poptrails<span class="ot">=</span>poptrails[<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">3</span>,<span class="dv">4</span>)]</span>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>poptrails<span class="ot">=</span>poptrails[<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>)]</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. find nearest feature index</span></span>
 <span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>nearest_idx <span class="ot">&lt;-</span> <span class="fu">st_nearest_feature</span>(PB_HawaiiInfo, poptrails)</span>
@@ -396,7 +396,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a>nearest_trails <span class="ot">&lt;-</span> poptrails[nearest_idx, ]</span>
 <span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="co"># 3. calculate distance (element-wise)</span></span>
-<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>nearest_dist_m <span class="ot">&lt;-</span> <span class="fu">st_distance</span>(PB_HawaiiInfo, nearest_trails, <span class="at">by_element =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>nearest_dist_m <span class="ot">&lt;-</span> <span class="fu">st_distance</span>(PB_HawaiiInfo, nearest_trails, <span class="at">by_element =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a><span class="fu">tmap_mode</span>(<span class="st">"view"</span>)</span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a><span class="fu">tm_shape</span>(poptrails) <span class="sc">+</span></span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>    <span class="fu">tm_dots</span>(</span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>        <span class="at">col =</span> <span class="st">"popularity"</span>,       <span class="co"># color based on popularity</span></span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>        <span class="at">palette =</span> <span class="st">"viridis"</span>,</span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>        <span class="at">title =</span> <span class="st">"Popularity"</span>,</span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a>        <span class="at">size =</span> <span class="fl">0.01</span>,              <span class="co"># adjust point size</span></span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a>        <span class="at">id =</span> <span class="st">"name_75th"</span>,              <span class="co"># hover info</span></span>
+<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a>        <span class="at">popup.vars =</span> <span class="fu">c</span>(</span>
+<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a>            <span class="st">"Popularity"</span> <span class="ot">=</span> <span class="st">"popularity"</span></span>
+<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a>        )</span>
+<span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">+</span></span>
+<span id="cb8-24"><a href="#cb8-24" aria-hidden="true" tabindex="-1"></a>    <span class="fu">tm_view</span>(<span class="at">set.view =</span> <span class="fu">c</span>(center_lon, center_lat, zoom_level))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 
@@ -877,7 +891,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb9-184"><a href="#cb9-184" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb9-185"><a href="#cb9-185" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb9-186"><a href="#cb9-186" aria-hidden="true" tabindex="-1"></a><span class="in">```{r eval=FALSE}</span></span>
-<span id="cb9-187"><a href="#cb9-187" aria-hidden="true" tabindex="-1"></a>poptrails<span class="ot">=</span>poptrails[<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">3</span>,<span class="dv">4</span>)]</span>
+<span id="cb9-187"><a href="#cb9-187" aria-hidden="true" tabindex="-1"></a>poptrails<span class="ot">=</span>poptrails[<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>)]</span>
 <span id="cb9-188"><a href="#cb9-188" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb9-189"><a href="#cb9-189" aria-hidden="true" tabindex="-1"></a><span class="co"># 1. find nearest feature index</span></span>
 <span id="cb9-190"><a href="#cb9-190" aria-hidden="true" tabindex="-1"></a>nearest_idx <span class="ot">&lt;-</span> <span class="fu">st_nearest_feature</span>(PB_HawaiiInfo, poptrails)</span>
@@ -888,7 +902,23 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb9-195"><a href="#cb9-195" aria-hidden="true" tabindex="-1"></a><span class="co"># 3. calculate distance (element-wise)</span></span>
 <span id="cb9-196"><a href="#cb9-196" aria-hidden="true" tabindex="-1"></a>nearest_dist_m <span class="ot">&lt;-</span> <span class="fu">st_distance</span>(PB_HawaiiInfo, nearest_trails, <span class="at">by_element =</span> <span class="cn">TRUE</span>)</span>
 <span id="cb9-197"><a href="#cb9-197" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-198"><a href="#cb9-198" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb9-198"><a href="#cb9-198" aria-hidden="true" tabindex="-1"></a><span class="fu">tmap_mode</span>(<span class="st">"view"</span>)</span>
+<span id="cb9-199"><a href="#cb9-199" aria-hidden="true" tabindex="-1"></a><span class="fu">tm_shape</span>(poptrails) <span class="sc">+</span></span>
+<span id="cb9-200"><a href="#cb9-200" aria-hidden="true" tabindex="-1"></a>    <span class="fu">tm_dots</span>(</span>
+<span id="cb9-201"><a href="#cb9-201" aria-hidden="true" tabindex="-1"></a>        <span class="at">col =</span> <span class="st">"popularity"</span>,       <span class="co"># color based on popularity</span></span>
+<span id="cb9-202"><a href="#cb9-202" aria-hidden="true" tabindex="-1"></a>        <span class="at">palette =</span> <span class="st">"viridis"</span>,</span>
+<span id="cb9-203"><a href="#cb9-203" aria-hidden="true" tabindex="-1"></a>        <span class="at">title =</span> <span class="st">"Popularity"</span>,</span>
+<span id="cb9-204"><a href="#cb9-204" aria-hidden="true" tabindex="-1"></a>        <span class="at">size =</span> <span class="fl">0.01</span>,              <span class="co"># adjust point size</span></span>
+<span id="cb9-205"><a href="#cb9-205" aria-hidden="true" tabindex="-1"></a>        <span class="at">id =</span> <span class="st">"name_75th"</span>,              <span class="co"># hover info</span></span>
+<span id="cb9-206"><a href="#cb9-206" aria-hidden="true" tabindex="-1"></a>        <span class="at">popup.vars =</span> <span class="fu">c</span>(</span>
+<span id="cb9-207"><a href="#cb9-207" aria-hidden="true" tabindex="-1"></a>            <span class="st">"Popularity"</span> <span class="ot">=</span> <span class="st">"popularity"</span></span>
+<span id="cb9-208"><a href="#cb9-208" aria-hidden="true" tabindex="-1"></a>        )</span>
+<span id="cb9-209"><a href="#cb9-209" aria-hidden="true" tabindex="-1"></a>    ) <span class="sc">+</span></span>
+<span id="cb9-210"><a href="#cb9-210" aria-hidden="true" tabindex="-1"></a>    <span class="fu">tm_view</span>(<span class="at">set.view =</span> <span class="fu">c</span>(center_lon, center_lat, zoom_level))</span>
+<span id="cb9-211"><a href="#cb9-211" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-212"><a href="#cb9-212" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-213"><a href="#cb9-213" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-214"><a href="#cb9-214" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
 
